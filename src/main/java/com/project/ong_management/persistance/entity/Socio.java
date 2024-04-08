@@ -13,6 +13,7 @@ import lombok.NoArgsConstructor;
 public class Socio extends Persona{
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "sede_id", referencedColumnName = "sedeId") // nombre de la columna en la tabla Socio que hace referencia a la tabla Sede
+    @JoinColumn(name = "sede_id", referencedColumnName = "sedeId", nullable = false)
     private Sede sede;
+
 }
