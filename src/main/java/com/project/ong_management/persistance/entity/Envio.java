@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -25,13 +26,11 @@ public class Envio {
     @Column(name = "fechaSalida", nullable = false)
     private Date fechaSalida;
 
-    @Column(name = "destino", nullable = false)
-    private String destino;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "refugioId", referencedColumnName = "refugioId", nullable = false)
+    private Refugio refugio;
 
-    @Column(name = "tipoEnvio", nullable = false)
-    private String tipoEnvio;
-
-    @Column(name = "sedeId", nullable = false)
-    private int sedeId;
+    @OneToMany(mappedBy = "envio", cascade = CascadeType.ALL)
+    private List<EnvioDetalles> envioDetalles;
 
 }

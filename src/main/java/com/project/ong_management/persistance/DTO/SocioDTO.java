@@ -33,7 +33,6 @@ public class SocioDTO {
 
     private SedeDTO sede;
 
-
     private List<ReporteCuenta> reportes;
 
 }

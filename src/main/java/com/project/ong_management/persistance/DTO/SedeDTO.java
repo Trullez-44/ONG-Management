@@ -32,7 +32,6 @@ public class SedeDTO {
     @Size(min = 1, max = 255, message = "El nombre del director debe tener entre 1 y 255 caracteres")
     private String director;
 
-    @JsonIgnore
     private List<Socio> socios;
 
 }
