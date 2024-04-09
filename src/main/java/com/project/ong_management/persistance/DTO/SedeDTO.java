@@ -1,5 +1,9 @@
 package com.project.ong_management.persistance.DTO;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.project.ong_management.persistance.entity.Socio;
 import jakarta.validation.constraints.*;
 import lombok.Data;
 
@@ -7,6 +11,7 @@ import java.util.List;
 
 
 @Data
+@JsonIgnoreProperties(value = {"socios"})
 public class SedeDTO {
 
     private int sedeId;
@@ -27,6 +32,7 @@ public class SedeDTO {
     @Size(min = 1, max = 255, message = "El nombre del director debe tener entre 1 y 255 caracteres")
     private String director;
 
-    private List<SocioDTO> socios; // Considera cambiar a SocioDTO si no necesitas todos los datos de Socio
+
+//    private List<Socio> socios;
 
 }

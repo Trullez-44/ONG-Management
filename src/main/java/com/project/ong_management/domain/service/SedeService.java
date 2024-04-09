@@ -1,9 +1,15 @@
 package com.project.ong_management.domain.service;
 
-import com.project.ong_management.persistance.entity.Sede;
-import org.springframework.stereotype.Service;
+import com.project.ong_management.persistance.DTO.SedeDTO;
+
+
+import java.util.List;
 
 
 public interface SedeService {
-    void saveSede(Sede sede);
+    SedeDTO saveSede(SedeDTO sedeDTO);
+    List<SedeDTO> findAllSedes();
+    SedeDTO findSedeById(Integer id);
+    SedeDTO updateSede(Integer sedeId, SedeDTO sedeDTO);
+    void deleteSedeById(Integer sedeId);
 }

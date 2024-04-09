@@ -1,5 +1,6 @@
 package com.project.ong_management.persistance.entity;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 import java.util.List;
@@ -14,6 +15,7 @@ public class Sede {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "sedeId")
+    @JsonIgnoreProperties(value = {"socios"})
     private int sedeId;
 
     @Column(name = "nombre", nullable = false)

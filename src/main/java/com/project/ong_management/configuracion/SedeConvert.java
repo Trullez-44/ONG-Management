@@ -14,5 +14,17 @@ public class SedeConvert {
 
     public Sede ConvertDTOToSede(SedeDTO sedeDTO){
         return dbm.map(sedeDTO,Sede.class);
+
+    }
+    public SedeDTO SedeToSedeDTO(Sede sede){
+        SedeDTO sedeDTO = dbm.map(sede, SedeDTO.class);
+
+        sedeDTO.setSedeId(sede.getSedeId());
+        sedeDTO.setNombre(sede.getNombre());
+        sedeDTO.setDireccion(sede.getDireccion());
+        sedeDTO.setCiudad(sede.getCiudad());
+        sedeDTO.setDirector(sede.getDirector());
+//        sedeDTO.setSocios(sede.getSocios());
+        return sedeDTO;
     }
 }
