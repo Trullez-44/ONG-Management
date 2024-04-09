@@ -20,10 +20,13 @@ public class SocioConvert {
     public SocioDTO socioToSocioDTO(Socio socio) {
         SocioDTO socioDTO = modelMapper.map(socio, SocioDTO.class);
 
+        socioDTO.setSocioId(socio.getSocioId());
         socioDTO.setNombre(socio.getNombre());
         socioDTO.setApellido(socio.getApellido());
         socioDTO.setTelefono(socio.getTelefono());
         socioDTO.setCorreoElectronico(socio.getCorreoElectronico());
+        socioDTO.setReportes(socio.getReportes());
+//        socioDTO.setSede(socio.getSede());
 
         return socioDTO;
     }

@@ -3,10 +3,13 @@ package com.project.ong_management.persistance.DTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.project.ong_management.persistance.entity.ReporteCuenta;
 import com.project.ong_management.persistance.entity.Sede;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import lombok.Data;
+
+import java.util.List;
 
 
 @Data
@@ -28,7 +31,9 @@ public class SocioDTO {
     @Pattern(regexp = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$", message = "el correo electrónico del socio no es válido")
     private String correoElectronico;
 
+    private SedeDTO sede;
 
-    private Sede sede;
+
+    private List<ReporteCuenta> reportes;
 
 }

@@ -9,11 +9,6 @@ import jakarta.persistence.*;
 @MappedSuperclass
 public class Persona {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private int Id;
-
     @NotBlank(message = "El nombre no puede estar en blanco")
     @Size(min = 2, max = 50, message = "El nombre debe tener entre 2 y 50 caracteres")
     @Column(name = "nombre", length = 50, nullable = false)

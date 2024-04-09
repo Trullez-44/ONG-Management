@@ -30,6 +30,7 @@ public class SocioServiceImplement implements SocioService {
     @Transactional
     public SocioDTO saveSocio(SocioDTO socioDTO) {
         Socio socio = socioConvert.convertDTOToSocio(socioDTO);
+        socioDTO.getReportes().forEach(reporteCuenta -> reporteCuenta.setSocio(socio));
         socioRepository.save(socio);
         return socioConvert.socioToSocioDTO(socio);
     }
@@ -46,13 +47,9 @@ public class SocioServiceImplement implements SocioService {
     @Override
     @Transactional(readOnly = true)
     public SocioDTO findSocioById(Integer id) {
-        Optional<Socio> socioOptional = socioRepository.findById(id);
-        if (socioOptional.isPresent()) {
-            Socio socio = socioOptional.get();
-            return socioConvert.socioToSocioDTO(socio);
-        } else {
-            throw new ResourceNotFoundException("Socio no encontrado con el ID: " + id);
-        }
+        Socio socioOptional = socioRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Socio no encontrado con el ID: " + id));
+        return socioConvert.socioToSocioDTO(socioOptional);
+
     }
 
     @Override
