@@ -16,16 +16,7 @@ public class VoluntarioConvert {
     }
 
     public VoluntarioDTO voluntarioToVoluntarioDTO(Voluntario voluntario) {
-        VoluntarioDTO voluntarioDTO = modelMapper.map(voluntario, VoluntarioDTO.class);
-voluntarioDTO.setVoluntarioId(voluntario.getVoluntarioId());
-voluntarioDTO.setNombre(voluntario.getNombre());
-voluntarioDTO.setApellido(voluntario.getApellido());
-voluntarioDTO.setTelefono(voluntario.getTelefono());
-voluntarioDTO.setEmail(voluntario.getEmail());
-voluntarioDTO.setProfesion(voluntario.getProfesion());
-voluntarioDTO.setDisponibilidad(voluntario.isDisponibilidad());
-voluntarioDTO.setTipoVoluntario(voluntario.getTipoVoluntario());
-voluntarioDTO.setSede(voluntario.getSede());
-        return voluntarioDTO;
+
+        return modelMapper.map(voluntario, VoluntarioDTO.class);
     }
 }

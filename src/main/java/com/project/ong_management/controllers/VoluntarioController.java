@@ -1,7 +1,10 @@
 package com.project.ong_management.controllers;
 
+import com.project.ong_management.configuracion.VoluntarioConvert;
+import com.project.ong_management.domain.repository.VoluntarioRepository;
 import com.project.ong_management.domain.service.VoluntarioService;
 import com.project.ong_management.persistance.DTO.VoluntarioDTO;
+import com.project.ong_management.persistance.entity.Voluntario;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
@@ -21,6 +24,8 @@ import java.util.stream.Collectors;
 public class VoluntarioController {
 
     private final VoluntarioService voluntarioService;
+    private final VoluntarioRepository voluntarioRepository;
+    private final VoluntarioConvert voluntarioConvert;
 
     @PostMapping()
     public ResponseEntity<Map<String, Object>> saveVoluntario(@Validated @RequestBody VoluntarioDTO voluntarioDTO, BindingResult bindingResult) {
@@ -47,7 +52,8 @@ public class VoluntarioController {
 
     @GetMapping()
     public List<VoluntarioDTO> findAll() {
-        return voluntarioService.findAllVoluntarios();
+        List<Voluntario> voluntarios = (List<Voluntario>) voluntarioRepository.findAll();
+        return voluntarios.stream().map(voluntarioConvert::voluntarioToVoluntarioDTO).toList();
     }
 
     @GetMapping("/{id}")
@@ -68,7 +74,8 @@ public class VoluntarioController {
                 response.put("errors", errors);
                 return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
             }
-            VoluntarioDTO updatedVoluntario = voluntarioService.updateVoluntario(id, voluntarioDTO);
+            voluntarioDTO.setVoluntarioId(id);
+            VoluntarioDTO updatedVoluntario = voluntarioService.updateVoluntario(voluntarioDTO);
             response.put("mensaje", "El Voluntario ha sido actualizado con éxito");
             response.put("voluntario", updatedVoluntario);
             return new ResponseEntity<>(response, HttpStatus.OK);

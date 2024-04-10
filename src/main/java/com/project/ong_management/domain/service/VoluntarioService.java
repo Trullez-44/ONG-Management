@@ -11,7 +11,12 @@ public interface VoluntarioService {
 
     VoluntarioDTO findVoluntarioById(Integer id);
 
-    VoluntarioDTO updateVoluntario(Integer voluntarioId, VoluntarioDTO voluntarioDTO);
+    VoluntarioDTO updateVoluntario(VoluntarioDTO voluntarioDTO);
 
     void deleteVoluntarioById(Integer voluntarioId);
+
+    List<VoluntarioDTO> findVoluntarioBySede(Integer sedeId);
+
+    List<VoluntarioDTO> findVoluntarioByProfesion(String profesion);
+
 }

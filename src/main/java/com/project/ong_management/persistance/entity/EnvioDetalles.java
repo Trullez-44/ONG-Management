@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Set;
 
 
 @Data
@@ -38,4 +39,11 @@ public class EnvioDetalles {
 
     @Column(name = "numToneladas", nullable = false)
     private int numToneladas;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "AyudaHumanitaria",
+            joinColumns = {@JoinColumn(name = "envioId")},
+            inverseJoinColumns = {@JoinColumn(name = "voluntarioId")})
+    private Set<Voluntario> voluntarios;
 }
