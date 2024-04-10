@@ -96,11 +96,18 @@ public class VoluntarioServiceImplement implements VoluntarioService {
 
     @Override
     public List<VoluntarioDTO> findVoluntarioBySede(Integer sedeId) {
-        return null;
+        List<Voluntario> voluntarioEntities = voluntarioRepository.findByIdSede(sedeId);
+        return voluntarioEntities.stream()
+                .map(voluntarioConvert::voluntarioToVoluntarioDTO)
+                .toList();
     }
 
     @Override
     public List<VoluntarioDTO> findVoluntarioByProfesion(String profesion) {
-        return null;
+
+        List<Voluntario> voluntarioEntities = voluntarioRepository.findByProfesion(profesion);
+        return voluntarioEntities.stream()
+                .map(voluntarioConvert::voluntarioToVoluntarioDTO)
+                .toList();
     }
 }

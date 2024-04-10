@@ -1,5 +1,6 @@
 package com.project.ong_management.persistance.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -30,7 +32,14 @@ public class Envio {
     @JoinColumn(name = "refugioId", referencedColumnName = "refugioId", nullable = false)
     private Refugio refugio;
 
-    @OneToMany(mappedBy = "envio", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "envio", cascade = CascadeType.ALL, fetch=FetchType.LAZY)
+    @JsonManagedReference
     private List<EnvioDetalles> envioDetalles;
 
+    @ManyToMany()
+    @JoinTable(
+            name = "sedes_colaboradoras",
+            joinColumns = {@JoinColumn(name = "envioId")},
+            inverseJoinColumns = {@JoinColumn(name = "sedeId")})
+    private Set<Sede> sedes;
 }

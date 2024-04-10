@@ -10,7 +10,7 @@ import lombok.Data;
 import java.time.LocalDateTime;
 
 @Data
-public class ReporteCuentaDTO {
+public class ReporteCuotaDTO {
 
     private int reporteId;
 //    @NotNull(message = "El id del socio no puede ser nulo")
@@ -27,4 +27,6 @@ public class ReporteCuentaDTO {
     @NotNull(message = "El importe total no puede ser nulo")
     @PositiveOrZero(message = "El importe total debe ser mayor o igual a cero")
     private Double importeTotal;
+
+    private SocioDTO socio;
 }

@@ -1,10 +1,6 @@
 package com.project.ong_management.persistance.DTO;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.project.ong_management.persistance.entity.ReporteCuenta;
-import com.project.ong_management.persistance.entity.Sede;
+import com.project.ong_management.persistance.entity.ReporteCuota;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import lombok.Data;
@@ -33,6 +29,6 @@ public class SocioDTO {
 
     private SedeDTO sede;
 
-    private List<ReporteCuenta> reportes;
+    private List<ReporteCuota> reportes;
 
 }

@@ -7,14 +7,14 @@ CREATE TABLE `EnvioDetalles`(
     `numUnidades` INT NOT NULL,
     `numToneladas` INT NOT NULL
 );
-CREATE TABLE `Voluntario`(
+CREATE TABLE `voluntario`(
     `voluntarioId` INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `nombre` VARCHAR(255) NOT NULL,
     `apellido` VARCHAR(255) NOT NULL,
+    `correo_electronico` VARCHAR(255) NOT NULL,
+    `nombre` VARCHAR(255) NOT NULL,
     `telefono` VARCHAR(255) NOT NULL,
-    `email` VARCHAR(255) NOT NULL,
-    `profesion` VARCHAR(255) NOT NULL,
     `disponibilidad` TINYINT(1) NOT NULL,
+    `profesion` VARCHAR(255) NOT NULL,
     `tipoVoluntario` VARCHAR(255) NOT NULL,
     `sedeId` INT NOT NULL
 );
@@ -36,10 +36,10 @@ CREATE TABLE `SedesColaboradoras`(
 );
 CREATE TABLE `Sede`(
     `sedeId` INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `nombre` VARCHAR(255) NOT NULL,
+    `ciudad` VARCHAR(255) NOT NULL,
     `direccion` VARCHAR(255) NOT NULL,
-    `ciudadId` INT NOT NULL,
-    `directorId` INT NOT NULL
+    `director` VARCHAR(255) NOT NULL,
+    `nombre` VARCHAR(255) NOT NULL
 );
 CREATE TABLE `Envio`(
     `envioId` INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -47,21 +47,21 @@ CREATE TABLE `Envio`(
     `fechaSalida` DATE NOT NULL,
     `refugioId` INT NOT NULL
 );
-CREATE TABLE `Socio`(
+CREATE TABLE `socio`(
     `socioId` INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `nombre` VARCHAR(255) NOT NULL,
-    `apellido` VARCHAR(255) NOT NULL,
-    `direccion` VARCHAR(255) NOT NULL,
+     `apellido` VARCHAR(255) NOT NULL,
+    `correo_electronico` VARCHAR(255) NOT NULL,
+     `nombre` VARCHAR(255) NOT NULL,
     `telefono` VARCHAR(255) NOT NULL,
     `sedeId` INT NOT NULL
 );
-CREATE TABLE `ReporteCuota`(
-    `reporteId` INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `socioId` INT NOT NULL,
-    `fechaPago` DATETIME NOT NULL,
-    `cuentaBancaria` VARCHAR(255) NOT NULL,
-    `tipoCuota` ENUM('Minima', 'Media', 'Maxima') NOT NULL,
-    `importeTotal` DOUBLE NOT NULL
+CREATE TABLE reporte_cuota(
+    `reporte_id` INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `fecha_pago` DATETIME NOT NULL,
+    `cuenta_bancaria` VARCHAR(255) NOT NULL,
+    `tipo_cuota` ENUM('MINIMA', 'MEDIA', 'MAXIMA') NOT NULL,
+    `importe_total` DOUBLE NOT NULL
+    `socio_id` INT NOT NULL
 );
 CREATE TABLE `AyudaHumanitaria`(
     `envioId` INT NOT NULL,

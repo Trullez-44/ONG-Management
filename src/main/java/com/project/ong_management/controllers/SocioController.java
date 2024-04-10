@@ -2,6 +2,7 @@ package com.project.ong_management.controllers;
 
 import com.project.ong_management.domain.service.SocioService;
 import com.project.ong_management.persistance.DTO.SocioDTO;
+import com.project.ong_management.persistance.entity.TipoCuota;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
@@ -22,6 +23,11 @@ public class SocioController {
 
     private final SocioService socioService;
 
+    @GetMapping("/tipo-cuota/{tipoCuota}")
+    public ResponseEntity<List<SocioDTO>> findAllSociosByTipoCuota(@PathVariable TipoCuota tipoCuota) {
+        List<SocioDTO> socios = socioService.findByTipoCuota(tipoCuota);
+        return new ResponseEntity<>(socios, HttpStatus.OK);
+    }
     @PostMapping()
     public ResponseEntity<Map<String, Object>> saveSocio(@Validated @RequestBody SocioDTO socioDTO, BindingResult bindingResult) {
         Map<String, Object> response = new HashMap<>();

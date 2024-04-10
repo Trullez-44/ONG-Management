@@ -5,6 +5,7 @@ import com.project.ong_management.domain.repository.SocioRepository;
 import com.project.ong_management.exceptions.ResourceNotFoundException;
 import com.project.ong_management.persistance.DTO.SocioDTO;
 import com.project.ong_management.persistance.entity.Socio;
+import com.project.ong_management.persistance.entity.TipoCuota;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -74,4 +75,18 @@ public class SocioServiceImplement implements SocioService {
     public void deleteSocioById(Integer socioId) {
         socioRepository.deleteById(socioId);
     }
+    @Override
+    @Transactional(readOnly = true)
+    public List<SocioDTO> findByTipoCuota(TipoCuota tipoCuota) {
+        List<Socio> socios = socioRepository.findByTipoCuota(tipoCuota);
+        if (socios.isEmpty()) {
+            throw new ResourceNotFoundException("No se encontraron socios con el tipo de cuota: " + tipoCuota);
+        }
+        List<SocioDTO> socioDTOs = socios.stream()
+                .map(socioConvert::socioToSocioDTO)
+                .collect(Collectors.toList());
+
+        return socioDTOs;
+    }
 }
+

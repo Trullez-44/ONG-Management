@@ -21,10 +21,10 @@ public class EnvioDetalles {
     private int envioDetallesId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "envioId", referencedColumnName = "envioId", nullable = false)
+    @JoinColumn(name = "envioId", referencedColumnName = "envioId")
     private Envio envio;
 
-    @Column(name = "tipoCarga", nullable = false)
+    @Column(name = "tipoCarga")
     @Enumerated(EnumType.STRING)
     private TipoCarga tipoCarga;
 

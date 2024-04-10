@@ -1,7 +1,6 @@
 package com.project.ong_management.persistance.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,7 +13,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Entity
 @Table(name = "ReporteCuota")
-public class ReporteCuenta {
+public class ReporteCuota {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

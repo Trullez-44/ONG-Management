@@ -1,9 +1,11 @@
 package com.project.ong_management.persistance.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -33,4 +35,11 @@ public class Sede {
     @OneToMany(mappedBy = "sede", cascade = CascadeType.ALL)
     private List<Socio> socios;
 
+    @ManyToMany()
+    @JoinTable(
+            name="sedes_colaboradoras",
+            joinColumns=@JoinColumn(name="sedeId"),
+            inverseJoinColumns=@JoinColumn(name="envioId")
+    )
+    private Set<Envio> envios;
 }

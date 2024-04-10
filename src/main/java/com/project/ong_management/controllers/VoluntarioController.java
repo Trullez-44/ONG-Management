@@ -27,6 +27,15 @@ public class VoluntarioController {
     private final VoluntarioRepository voluntarioRepository;
     private final VoluntarioConvert voluntarioConvert;
 
+    @GetMapping("/sede/{sede_id}")
+    public List<VoluntarioDTO> findVoluntariosBySede(@PathVariable Integer sede_id){
+        return voluntarioService.findVoluntarioBySede(sede_id);
+    }
+
+    @GetMapping("/profesion/{profesion}")
+    public List<VoluntarioDTO> findVoluntariosByProfesion(@PathVariable String profesion){
+        return voluntarioService.findVoluntarioByProfesion(profesion);
+    }
     @PostMapping()
     public ResponseEntity<Map<String, Object>> saveVoluntario(@Validated @RequestBody VoluntarioDTO voluntarioDTO, BindingResult bindingResult) {
         Map<String, Object> response = new HashMap<>();

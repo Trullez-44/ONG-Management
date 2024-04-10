@@ -1,6 +1,5 @@
 package com.project.ong_management.persistance.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,5 +24,5 @@ public class Socio extends Persona{
     private Sede sede;
 
     @OneToMany(mappedBy = "socio", cascade = CascadeType.ALL)
-    private List<ReporteCuenta> reportes;
+    private List<ReporteCuota> reportes;
 }
