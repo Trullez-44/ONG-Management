@@ -9,13 +9,10 @@ import java.util.List;
 @Data
 public class EnvioDTO {
 
-//    private Integer envioId;
+//    private Integer envioId
     private String codigoEnvio;
     private Date fechaSalida;
     private Integer refugioId;
-//    private Refugio refugio;
-    private List<Integer> sedes;
-    private List<EnvioDetallesDTO> detalles;
 
 
 }

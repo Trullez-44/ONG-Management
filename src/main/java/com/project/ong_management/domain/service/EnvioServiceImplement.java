@@ -39,14 +39,8 @@ public class EnvioServiceImplement implements EnvioService {
 
     @Override
     @Transactional(readOnly = true)
-    public EnvioDTO findEnvioById(int id) {
-        Optional<Envio> envioOptional = envioRepository.findById(id);
-        if (envioOptional.isPresent()) {
-            Envio envio = envioOptional.get();
-            return envioConvert.envioToEnvioDTO(envio);
-        } else {
-            throw new ResourceNotFoundException("Envio no encontrado con el ID: " + id);
-        }
+    public Envio findEnvioById(int id) {
+        return  envioRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Envio no encontrado con el ID: " + id));
     }
 
     @Override
@@ -69,4 +63,5 @@ public class EnvioServiceImplement implements EnvioService {
     public void deleteEnvioById(int envioId) {
         envioRepository.deleteById(envioId);
     }
+
 }

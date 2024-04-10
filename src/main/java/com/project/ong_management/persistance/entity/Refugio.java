@@ -6,12 +6,14 @@ import lombok.NoArgsConstructor;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "Refugio")
-public class Refugio {
+public class Refugio{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

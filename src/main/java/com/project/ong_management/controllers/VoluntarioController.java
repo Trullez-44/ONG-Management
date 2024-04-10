@@ -94,10 +94,15 @@ public class VoluntarioController {
             return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteById(@PathVariable Integer id) {
         voluntarioService.deleteVoluntarioById(id);
         return ResponseEntity.noContent().build();
+    }
+    @PostMapping("/asociar")
+    public void associateVolunteers(@RequestBody Map<String,Integer> valores){
+        int envioDetalleId = valores.get("envioDetalleId");
+        int voluntarioId = valores.get("voluntarioId");
+        voluntarioService.associateVolunteers(envioDetalleId, voluntarioId);
     }
 }

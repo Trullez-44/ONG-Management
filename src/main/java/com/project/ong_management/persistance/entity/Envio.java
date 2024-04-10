@@ -1,5 +1,6 @@
 package com.project.ong_management.persistance.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -28,11 +29,11 @@ public class Envio {
     @Column(name = "fechaSalida", nullable = false)
     private Date fechaSalida;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "refugioId", referencedColumnName = "refugioId", nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "refugioId", referencedColumnName = "refugioId")
     private Refugio refugio;
 
-    @OneToMany(mappedBy = "envio", cascade = CascadeType.ALL, fetch=FetchType.LAZY)
+    @OneToMany(mappedBy = "envio", cascade = CascadeType.ALL, fetch=FetchType.EAGER)
     @JsonManagedReference
     private List<EnvioDetalles> envioDetalles;
 

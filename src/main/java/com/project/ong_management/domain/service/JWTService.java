@@ -14,7 +14,7 @@ import java.util.function.Function;
 
 @Service
 public class JWTService {
-    public static final long JWT_TOKEN_VALIDITY = 5 * 60 * 60;
+    public static final long JWT_TOKEN_VALIDITY = 86_400_000;
     public static final String JWT_SECRET = "jxgEQe.XHuPq8VdbyYFNkAN.dudQ0903YUn4";
 
     private Claims getAllClaimsFromToken(String token) {

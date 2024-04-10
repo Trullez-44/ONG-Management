@@ -28,7 +28,7 @@ public class Voluntario extends Persona{
     @Column(name = "tipoVoluntario", nullable = false)
     private TipoVoluntario tipoVoluntario;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "sedeId", referencedColumnName = "sedeId")
     private Sede sede;
 

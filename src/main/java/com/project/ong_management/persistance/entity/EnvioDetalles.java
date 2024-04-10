@@ -1,5 +1,6 @@
 package com.project.ong_management.persistance.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,8 +21,9 @@ public class EnvioDetalles {
     @Column(name = "envioDetallesId")
     private int envioDetallesId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "envioId", referencedColumnName = "envioId")
+    @JsonIgnore
     private Envio envio;
 
     @Column(name = "tipoCarga")
@@ -45,5 +47,7 @@ public class EnvioDetalles {
             name = "AyudaHumanitaria",
             joinColumns = {@JoinColumn(name = "envioId")},
             inverseJoinColumns = {@JoinColumn(name = "voluntarioId")})
+    @JsonIgnore
     private Set<Voluntario> voluntarios;
+
 }

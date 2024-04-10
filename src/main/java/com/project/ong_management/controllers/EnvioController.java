@@ -2,6 +2,7 @@ package com.project.ong_management.controllers;
 
 import com.project.ong_management.domain.service.EnvioService;
 import com.project.ong_management.persistance.DTO.EnvioDTO;
+import com.project.ong_management.persistance.entity.Envio;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
@@ -51,9 +52,8 @@ public class EnvioController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> findById(@PathVariable Integer id) {
-        EnvioDTO envioDTO = envioService.findEnvioById(id);
-        return ResponseEntity.ok(envioDTO);
+    public Envio findById(@PathVariable Integer id) {
+        return envioService.findEnvioById(id);
     }
 
     @PutMapping("/{id}")

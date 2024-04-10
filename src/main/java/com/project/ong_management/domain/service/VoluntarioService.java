@@ -19,6 +19,6 @@ public interface VoluntarioService {
 
     List<VoluntarioDTO> findVoluntarioByProfesion(String profesion);
 
-
+void associateVolunteers(Integer id, Integer idv);
 
 }
